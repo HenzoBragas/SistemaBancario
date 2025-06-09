@@ -1,4 +1,4 @@
-package org.example.banco;
+package org.example.info;
 
 public class Client {
     private String name;

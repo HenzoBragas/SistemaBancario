@@ -1,13 +1,19 @@
-package org.example.banco;
+package org.example.info;
 
 public class Account {
     private int numberAccount;
     private double balance;
     private Client client;
 
-    public Account(double balance, Client client) {
-        this.balance = balance;
+    public Account(Client client, int numberAccount, double initialDeposit) {
         this.client = client;
+        this.numberAccount = numberAccount;
+        deposit(initialDeposit);
+    }
+
+    public Account(Client client, int numberAccount) {
+        this.client = client;
+        this.numberAccount = numberAccount;
     }
 
     public void deposit(double value){

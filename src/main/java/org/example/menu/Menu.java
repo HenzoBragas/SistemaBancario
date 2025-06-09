@@ -1,17 +1,17 @@
-package org.example;
+package org.example.menu;
 
 import org.example.info.Account;
 import org.example.info.Client;
-import org.example.management.BankManager;
+import org.example.management.Management;
 
 import java.util.Scanner;
 
 public class Menu {
-    private BankManager bankManager;
+    private Management management;
     private Scanner sc;
 
-    public Menu(BankManager bankManager){
-        this.bankManager = bankManager;
+    public Menu(Management management){
+        this.management = management;
         this.sc = new Scanner(System.in);
     }
 
@@ -30,18 +30,18 @@ public class Menu {
             sc.nextLine();
 
             switch (option) {
-                case 1 -> registerUser();
-                case 2 -> deposit();
-                case 3 -> withdraw();
-                case 4 -> extract();
-                case 5 -> bankManager.listAccounts();
-                case 0 -> System.out.println("Saindo...");
+                case 1 -> interfaceUser();
+                case 2 -> interfaceDeposit();
+                case 3 -> interfaceWithdraw();
+                case 4 -> interfaceExtract();
+                case 5 -> management.listAccounts();
+                case 6 -> System.out.println("Saindo...");
                 default -> System.out.println("Opção inválida.");
             }
-        } while (option != 0);
+        } while (option != 6);
     }
 
-    public void registerUser() {
+    public void interfaceUser() {
         System.out.print("Nome: ");
         String name = sc.nextLine();
 
@@ -67,7 +67,7 @@ public class Menu {
         }
 
         Client client = new Client(name, cpf, gender);
-        boolean register = bankManager.registerCustomer(client, numberAccount, initialDeposit);
+        boolean register = management.registerCustomer(client, numberAccount, initialDeposit);
 
         if (register) {
             System.out.println("Cliente e conta cadastrados com sucesso!");
@@ -76,13 +76,13 @@ public class Menu {
         }
     }
 
-    public void deposit(){
+    public void interfaceDeposit(){
         System.out.println("Digite numero da sua conta para deposito: ");
         int accountNumber = sc.nextInt();
-        Account account = bankManager.searchAccount(accountNumber);
+        Account account = management.searchAccount(accountNumber);
 
         if (account != null) {
-            bankManager.unicListAccount(account);
+            management.unicListAccount(account);
             System.out.print("Digite o valor do depósito: ");
             double value = sc.nextDouble();
             account.deposit(value);
@@ -93,14 +93,14 @@ public class Menu {
 
     }
 
-    public void withdraw(){
+    public void interfaceWithdraw(){
 
         System.out.println("Digite numero da sua conta para saque: ");
         int accountNumber = sc.nextInt();
-        Account account = bankManager.searchAccount(accountNumber);
+        Account account = management.searchAccount(accountNumber);
 
         if(account != null) {
-            bankManager.unicListAccount(account);
+            management.unicListAccount(account);
             System.out.println("Digite o valor do saque");
             double value = sc.nextDouble();
             account.withdraw(value);
@@ -111,13 +111,13 @@ public class Menu {
 
     }
 
-    public void extract(){
+    public void interfaceExtract(){
         System.out.println("Digite o numero da sua conta para extrato: ");
         int accountNumber = sc.nextInt();
-        Account account = bankManager.searchAccount(accountNumber);
+        Account account = management.searchAccount(accountNumber);
 
         if (account != null) {
-            bankManager.unicListAccount(account);
+            management.unicListAccount(account);
         }else {
             System.out.println("Conta não encontrada.");
         }
