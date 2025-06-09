@@ -21,7 +21,7 @@ public class Menu {
             System.out.println("\n--- Menu do Banco ---");
             System.out.println("1. Cadastrar cliente com conta");
             System.out.println("2. Depositar");
-            System.out.println("3. Saquar");
+            System.out.println("3. Sacar");
             System.out.println("4. Extrato");
             System.out.println("5. Listar contas");
             System.out.println("0. Sair");
